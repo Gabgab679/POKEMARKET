@@ -1,7 +1,11 @@
 <div class="cards">
   <% @cards.each do |card| %>
     <div class="card d-flex" >
-    <%= cl_image_tag card.photos.first.key, height: 300, width: 400, crop: :fill %>
+    <% if card.photos.attached? %>
+      <%= cl_image_tag card.photos.first.key, height: 300, width: 400, crop: :fill %>
+    <% else %>
+      Inserer image par défaut
+    <% end %>
       <div>
         <p class="m-0"><%= card.name %></p>
         <p><%= card.description %></p>
