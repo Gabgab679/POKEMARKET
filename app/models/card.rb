@@ -5,6 +5,6 @@ class Card < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :image, presence: true
-  validates :state, presence: true, inclusion: { in: ["Mint", "Near Mint", "Good condition", "Acceptable", "Damaged"]}
+  validates :state, presence: true, inclusion: { in: ["Mint", "Near Mint", "Good condition", "Acceptable", "Damaged"] }
   validates :price, presence: true
 end
