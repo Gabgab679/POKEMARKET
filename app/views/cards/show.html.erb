@@ -10,5 +10,11 @@
       <p><%= @card.price %></p>
     </div>
   </div>
+  <div>
+    <%= button_to "Buy a card",  card_sales_path(@card), method: :post %>
+    <%# <%= simple_form_for [@card, @sale] do |f| %>
+      <%# <%= f.button :submit %>
+    <%# <% end %>
+  </div>
 </body>
 </html>
