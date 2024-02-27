@@ -42,5 +42,15 @@ Card.create!(
   image: 'https://fr.shopping.rakuten.com/photo/pikachu-v-promo-1633985847_L_NOPAD.jpg',
   state: 'Good condition', # État inactif
   price: 12.43,
-  user: utilisateur_trois
+  user_id: 1
+)
+
+User.create!(
+  username: 'Toufic3',
+  first_name: 'TTT',
+  last_name: 'TTT',
+  adresse: '3 rue du pont',
+  phone_number: '06514556649'
+  email: 'theo@gmail.com'
+  password: 'ttttttttt'
 )

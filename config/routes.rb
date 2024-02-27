@@ -8,11 +8,8 @@ Rails.application.routes.draw do
     resources :sales, only: %i[create new destroy] # edit et update a rajouter si negociation entre buyer et seller (prix)
   end
 
-  resources :users, except: %i[index new] do # Peut être rajouter create SI DEVISE s'occupe du create, jsplus
-    resources :cards # collection (la page d'un utilisateur contient les cartes possédées par cet utilisateur, donc il faut filtrer)
-    resources :sales, only: %i[index show] # collection (la page d'un utilisateur contient les ventes effectuées concernant CET utilisateur, donc il faut filtrer)
-  end
-
   # Defines the root path route ("/")
   root to: "cards#index" # = localhost 3000
+
+  get 'dashboard', to: 'pages#dashboard'
 end
