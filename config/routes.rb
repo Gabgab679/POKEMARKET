@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'sales/index'
   get 'sales/update'
   get 'cards/index'
-  get 'cards/show'
+  get 'cards/:id', to: 'cards#show'
   get 'cards/new'
   get 'cards/create'
   devise_for :users
