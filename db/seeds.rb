@@ -21,7 +21,7 @@ puts "Create cards"
 Card.create!(
   name: 'Card 1',
   description: 'Description of Card 1',
-  image: 'image1.jpg',
+  image: 'https://fr.shopping.rakuten.com/photo/pikachu-v-promo-1633985847_L_NOPAD.jpg',
   state: 'Damaged', # État actif
   price: 10.99,
   user: utilisateur
@@ -30,7 +30,7 @@ Card.create!(
 Card.create!(
   name: 'Card 2',
   description: 'Description of Card 2',
-  image: 'image2.jpg',
+  image: 'https://fr.shopping.rakuten.com/photo/pikachu-v-promo-1633985847_L_NOPAD.jpg',
   state: 'Mint', # État inactif
   price: 15.50,
   user: utilisateur_second
@@ -39,7 +39,7 @@ Card.create!(
 Card.create!(
   name: 'Card 3',
   description: 'Description of Card 3',
-  image: 'image3.jpg',
+  image: 'https://fr.shopping.rakuten.com/photo/pikachu-v-promo-1633985847_L_NOPAD.jpg',
   state: 'Good condition', # État inactif
   price: 12.43,
   user: utilisateur_trois
