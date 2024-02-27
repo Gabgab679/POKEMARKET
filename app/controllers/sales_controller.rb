@@ -34,7 +34,4 @@ class SalesController < ApplicationController
     @sale.destroy
     redirect_to cards_path(@cards), status: :see_other
   end
-
-  private
-
 end
