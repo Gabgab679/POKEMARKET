@@ -1,7 +1,7 @@
  <h1><%= @card.name %></h1>
   <div class="container d-flex">
-   <% if card.photos.attached? %>
-      <%= cl_image_tag card.photos.first.key, height: 300, width: 400, crop: :fill %>
+   <% if @card.photos.attached? %>
+      <%= cl_image_tag @card.photos.first.key, height: 300, width: 400, crop: :fill %>
     <% else %>
       Inserer image par défaut
     <% end %>
