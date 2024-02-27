@@ -1,7 +1,19 @@
 <div class="cards">
   <% @cards.each do |card| %>
-    <%= card %>
-  <% end %> LISTER LES CARTES DEPUIS LA DB
+    <div class="card d-flex" img="<%= card.image %>">
+      <div>
+        <p class="m-0"><%= card.name %></p>
+        <p><%= card.description %></p>
+      </div>
+      <div>
+        <p class="m-0"><%= card.state %></p>
+        <p><%= card.price %></p>
+      </div>
+
+      <%= link_to "See details", card_path(card.id) %>
+    </div>
+
+  <% end %>
 
   <div class="card-trip">
     <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
