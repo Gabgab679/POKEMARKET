@@ -1,10 +1,13 @@
 class Card < ApplicationRecord
+  STATES = ["Mint", "Near Mint", "Good condition", "Acceptable", "Damaged"]
+
   belongs_to :user #Seller
   has_one :sale
 
-  validates :name, presence: true
-  validates :description, presence: true
-  validates :image, presence: true
-  validates :state, presence: true, inclusion: { in: ["Mint", "Near Mint", "Good condition", "Acceptable", "Damaged"] }
-  validates :price, presence: true
+  # validates :name, presence: true
+  # validates :description, presence: true
+  # validates :state, presence: true, inclusion: { in: STATES }
+  # validates :price, presence: true
+
+  has_many_attached :photos
 end

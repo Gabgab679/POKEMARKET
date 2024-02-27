@@ -1,6 +1,7 @@
 <div class="cards">
   <% @cards.each do |card| %>
-    <div class="card d-flex" img="<%= card.image %>">
+    <div class="card d-flex" >
+    <%= cl_image_tag card.photos.first.key, height: 300, width: 400, crop: :fill %>
       <div>
         <p class="m-0"><%= card.name %></p>
         <p><%= card.description %></p>

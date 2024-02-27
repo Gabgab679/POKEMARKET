@@ -1,6 +1,6 @@
  <h1><%= @card.name %></h1>
   <div class="container d-flex">
-    <img src="<%= @card.image %>" alt="<%= @card.name %>" style="width: 33.33%; height: 20%;">
+    <%= cl_image_tag @card.photos.first.key, height: 300, width: 400, crop: :fill %>
     <div class="ms-3">
       <h3>Description</h3>
       <p><%= @card.description %></p>
