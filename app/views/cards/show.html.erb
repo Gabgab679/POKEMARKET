@@ -1,2 +1,14 @@
-<h1>Cards#show</h1>
-<p>Find me in app/views/cards/show.html.erb</p>
+ <h1><%= @card.name %></h1>
+  <div class="container d-flex">
+    <img src="<%= @card.image %>" alt="<%= @card.name %>" style="width: 33.33%; height: 20%;">
+    <div class="ms-3">
+      <h3>Description</h3>
+      <p><%= @card.description %></p>
+      <h3>Etat</h3>
+      <p><%= @card.state %></p>
+      <h3>Price</h3>
+      <p><%= @card.price %></p>
+    </div>
+  </div>
+</body>
+</html>
