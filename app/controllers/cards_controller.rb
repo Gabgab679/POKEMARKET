@@ -1,11 +1,13 @@
 class CardsController < ApplicationController
   before_action :user_signed_in?
+  skip_before_action :authenticate_user!, only: :index # Saute l'étape d'auth sur l'action index (puisque c'est notre root)
+
   def index
     @cards = Card.all
   end
 
   def show
-    @card = Card.find(params[:id])
+    @card = Card.find(params[:card_id])
   end
 
   def new
@@ -14,7 +16,7 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.new(card_params)
-    @card.user_id = current_user.id
+    @card.user = current_user
     if @card.save
       redirect_to @card, notice: 'Card was successfully created.'
     else
@@ -31,7 +33,7 @@ class CardsController < ApplicationController
   end
 
   def destroy
-    
+
   end
 
   private
