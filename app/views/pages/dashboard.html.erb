@@ -18,7 +18,7 @@
             <div class="col-4 bg-secondary p-4" style="background-image: url(<%= card.image %>); background-size: cover;">
               <p><%= card.name %></p>
               <p><%= card.price %></p>
-              <div class="badge text-bg-primary"><%= card.sale.status.nil? ? "pending" : "sold" %></div>
+              <div class="badge text-bg-primary"><%= card.sale ? "pending" : "sold" %></div>
             </div>
           <% end %>
         </div>
@@ -35,7 +35,7 @@
               <p> <%= card.name  %> </p>
               <p> <%= card.price  %> </p>
               <%#  if in line %>
-              <div class="badge text-bg-primary"><%= card.sale.status.nil? ? "pending" : "sold" %></div>
+              <div class="badge text-bg-primary"><%= card.sale ? "pending" : "sold" %></div>
             </div>
           <% end %>
         </div>
