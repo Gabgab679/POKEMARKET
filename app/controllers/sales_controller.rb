@@ -4,13 +4,15 @@ class SalesController < ApplicationController
 
   def new
     @card = Card.find(params[:card_id])
-    @sale = Sale.new(sales_params)
   end
 
   def create
-    @sale = Sale.new(sales_params)
+    @sale = Sale.new
     @sale.card = Card.find(params[:card_id])
     @sale.user = current_user
+    @sale.transaction_date = Time.now
+    @sale.status = "accepted"
+    @sale.save
     if @sale.save
       redirect_to cards_path(@cards)
     else
@@ -34,9 +36,5 @@ class SalesController < ApplicationController
   end
 
   private
-
-  def sales_params
-    params.require(:sales).permit(:transaction_date, :status)
-  end
 
 end
