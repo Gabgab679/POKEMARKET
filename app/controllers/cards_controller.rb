@@ -7,11 +7,15 @@ class CardsController < ApplicationController
   end
 
   def show
-    @card = Card.find(params[:card_id])
+    @card = Card.find(params[:id])
   end
 
   def new
     @card = Card.new
+  end
+
+  def edit
+    @card = Card.find(params[:id])
   end
 
   def create
@@ -22,10 +26,6 @@ class CardsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def edit
-    @card = Card.find(params[:id])
   end
 
   def update
