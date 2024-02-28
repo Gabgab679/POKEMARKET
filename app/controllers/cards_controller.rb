@@ -1,5 +1,4 @@
 class CardsController < ApplicationController
-  before_action :user_signed_in?
   skip_before_action :authenticate_user!, only: :index # Saute l'étape d'auth sur l'action index (puisque c'est notre root)
 
   def index
@@ -21,10 +20,11 @@ class CardsController < ApplicationController
   def create
     @card = Card.new(card_params)
     @card.user = current_user
+
     if @card.save
       redirect_to @card, notice: 'Card was successfully created.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -33,12 +33,14 @@ class CardsController < ApplicationController
   end
 
   def destroy
-
+    @card = Card.find(params[:id])
+    @card.destroy
+    redirect_to cards_path, notice: "Card sucessfully deleted"
   end
 
   private
 
   def card_params
-    params.require(:card).permit(:name, :description, :image, :state, :price)
+    params.require(:card).permit(:name, :description, :image, :state, :price, photos: [])
   end
 end

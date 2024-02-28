@@ -1,6 +1,10 @@
  <h1><%= @card.name %></h1>
   <div class="container d-flex">
-    <img src="<%= @card.image %>" alt="<%= @card.name %>" style="width: 33.33%; height: 20%;">
+   <% if @card.photos.attached? %>
+      <%= cl_image_tag @card.photos.first.key, height: 300, width: 400, crop: :fill %>
+    <% else %>
+      Inserer image par défaut
+    <% end %>
     <div class="ms-3">
       <h3>Description</h3>
       <p><%= @card.description %></p>
@@ -10,5 +14,15 @@
       <p><%= @card.price %></p>
     </div>
   </div>
+  <%  is_a_user_card = current_user.cards.include?(@card) %>
+  <% if is_a_user_card %>
+    <div>
+      <%= button_to "edit card", edit_card_path(@card) %>
+      <%= button_to "delete card", card_path(@card), method: :delete  %>
+    </div>
+
+  <% else %>
+    <%= button_to "buy card", card_sales_path(@card) %>
+  <% end %>
 </body>
 </html>

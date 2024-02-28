@@ -5,6 +5,9 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    # specs?
+    # @user = current_user # Supposons que vous avez une méthode current_user pour récupérer l'utilisateur actuellement connecté
+    #@cards = @user.cards
+    #@sales = @user.sales.includes(:card) # Assurez-vous de charger également les cartes associées aux ventes
   end
 end
+

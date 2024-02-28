@@ -1,8 +1,9 @@
 <%= simple_form_for @card do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
-  <%= f.input :image %>
-  <%= f.input :state %>
+  <%# <%= f.input :image %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+  <%= f.input :state, collection: Card::STATES %>
   <%= f.input :price %>
   <%= f.button :submit %>
 <% end %>

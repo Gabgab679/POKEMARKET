@@ -44,3 +44,13 @@ Card.create!(
   price: 12.43,
   user: utilisateur_trois
 )
+
+User.create!(
+  username: 'Toufic3',
+  first_name: 'TTT',
+  last_name: 'TTT',
+  address: '3 rue du pont',
+  phone_number: '06514556649',
+  email: 'theo@gmail.com',
+  password: 'ttttttttt'
+)
