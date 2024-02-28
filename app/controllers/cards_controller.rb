@@ -29,7 +29,13 @@ class CardsController < ApplicationController
   end
 
   def update
-    @card = Card.new(card_params)
+    @card = Card.find(params[:id])
+
+    if @card.update(card_params)
+      redirect_to dashboard_path, notice: 'Card was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
