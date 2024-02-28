@@ -1,6 +1,7 @@
 <div class="cards">
 
   <% @cards.each do |card| %>
+  <% if card.sale == nil %>
     <div class="card-trip" >
         <% if card.photos.attached? %>
           <%= cl_image_tag(card.photos.first.key) %>
@@ -18,4 +19,5 @@
         <%# <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" /> %>
       <%# </div> %>
     </div>
+  <% end %>
   <% end %>

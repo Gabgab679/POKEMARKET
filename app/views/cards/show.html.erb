@@ -20,7 +20,7 @@
   <%  is_a_user_card = current_user.cards.include?(@card) %>
   <% if is_a_user_card %>
     <div>
-      <%= button_to "edit card", edit_card_path(@card) %>
+      <%= button_to "edit card", edit_card_path(@card), method: :get %>
       <%= button_to "delete card", card_path(@card), method: :delete  %>
     </div>
 
