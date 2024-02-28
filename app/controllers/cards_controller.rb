@@ -34,7 +34,6 @@ class CardsController < ApplicationController
   end
 
   def destroy
-
   end
 
   private
@@ -42,5 +41,4 @@ class CardsController < ApplicationController
   def card_params
     params.require(:card).permit(:name, :description, :image, :state, :price, photos: [])
   end
-
 end
