@@ -14,15 +14,18 @@
       <% if current_user.cards.empty? %>
         <p>No cards in your pokedex</p>
       <% else %>
-        <div class="row">
-          <% current_user.cards.each do |card|%>
-            <div class="col-4 bg-secondary p-1 m-3" style="background-image: url(<%= card.image %>); background-size: contain; height: 350px  ">
-              <p><%= card.name %></p>
-              <p><%= card.price %></p>
-              <a href="<%= card_path(card) %>" class="btn btn-primary">View Card</a>
+      <div class="row">
+        <% current_user.cards.each do |card|%>
+          <div class="col-4 bg-secondary p-1 m-3 position-relative" style="background-image: url('<%= card.image %>'); background-size: contain; height: 350px;">
+            <div class="card-strater position-absolute start-0 start-0 w-100 d-flex justify-content-between bg-secondary text-white p-2">
+              <p class="m-0"><%= card.name %></p>
+              <p class="m-0"><%= card.price %></p>
             </div>
-          <% end %>
-        </div>
+            <a href="<%= card_path(card) %>" class="btn btn-secondary position-absolute bottom-0 start-0 w-100">View Card</a>
+          </div>
+        <% end %>
+      </div>
+
       <% end %>
     </div>
     <%# MY Purcahse  %>
@@ -32,11 +35,13 @@
       <% else %>
         <div class="row">
           <% current_user.card_requests.each do |card|%>
-            <div class="col-4 bg-secondary p-1  m-3" style="background-image: url(<%= card.image %>); background-size: contain;">
-              <p> <%= card.name  %> </p>
-              <p> <%= card.price  %> </p>
-              <%#  if in line %>
-              <div class="badge text-bg-primary"><%= card.sale ? "pending" : "sold" %></div>
+           <div class="cards_sales col-4 bg-secondary p-1 m-3 position-relative" style="background-image: url('<%= card.image %>'); background-size: cover; background-position: center; height: 350px;">
+              <!-- Bandeau en bas avec le nom et le prix -->
+              <div class="card-footer position-absolute bottom-0 start-0 w-100 d-flex justify-content-between bg-secondary text-light p-2">
+                <p class="m-0"><%= card.name %></p>
+                <p class="m-0"><%= card.price %></p>
+               </div>
+              <div class="badge position-absolute top-5 end-0 bg-secondary p-2" style ="h-10 w-10"><%= card.sale ? "pending" : "sold" %></div>
             </div>
           <% end %>
         </div>
