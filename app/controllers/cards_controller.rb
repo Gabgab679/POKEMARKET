@@ -34,6 +34,7 @@ class CardsController < ApplicationController
   end
 
   def destroy
+    @card = Card.destroy
   end
 
   private
