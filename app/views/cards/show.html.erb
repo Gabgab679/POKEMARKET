@@ -14,9 +14,13 @@
       <p><%= @card.price %></p>
     </div>
   </div>
-  <% if current_user.cards == @card %>
-    <%= button_to "edit card", edit_card_path(@card) %>
-    <%= button_to "delete card", card_sales_path(@card) %>
+  <%  is_a_user_card = current_user.cards.include?(@card) %>
+  <% if is_a_user_card %>
+    <div>
+      <%= button_to "edit card", edit_card_path(@card) %>
+      <%= button_to "delete card", cards_path, method: :destroy  %>
+    </div>
+
   <% else %>
     <%= button_to "buy card", card_sales_path(@card) %>
   <% end %>
