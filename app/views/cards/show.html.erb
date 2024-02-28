@@ -14,7 +14,11 @@
       <p><%= @card.price %></p>
     </div>
   </div>
-
-  <%= button_to "buy card", card_sales_path(@card) %>
+  <% if current_user.cards == @card %>
+    <%= button_to "edit card", edit_card_path(@card) %>
+    <%= button_to "delete card", card_sales_path(@card) %>
+  <% else %>
+    <%= button_to "buy card", card_sales_path(@card) %>
+  <% end %>
 </body>
 </html>
