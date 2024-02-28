@@ -14,7 +14,7 @@ class SalesController < ApplicationController
     @sale.status = "accepted"
     @sale.save
     if @sale.save
-      redirect_to cards_path(@cards)
+      redirect_to dashboard_path
     else
       render :new, status: :unprocessable_entity
     end
