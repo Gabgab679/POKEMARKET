@@ -64,7 +64,6 @@ User.create!(
   address: '13 rue du pont',
   phone_number: '0600112233',
   email: 'gabrielle.simha@gmail.com',
-  password: 'ttttttttt'
 )
 
 #   end

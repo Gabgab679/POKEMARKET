@@ -1,67 +1,21 @@
 <div class="cards">
 
   <% @cards.each do |card| %>
-    <div class="card d-flex" >
-    <% if card.photos.attached? %>
-      <%= cl_image_tag card.photos.first.key, height: 300, width: 400, crop: :fill %>
-    <% else %>
-      Inserer image par défaut
-    <% end %>
-      <div>
-        <p class="m-0"><%= card.name %></p>
+    <div class="card-trip" >
+        <% if card.photos.attached? %>
+          <%= cl_image_tag(card.photos.first.key) %>
+        <% else %>
+          <%= image_tag("https://www.emob-meubles.fr/media/catalog/product/cache/47315658861446b438ceea760f29ab26/R/M/RMK2536GM_Pokemon_Pikachu_Giant_Wall_Decals_Assembled_Product_0b96.jpg") %>
+        <% end %>
+      <%# <div class="card-trip-infos"> %>
+        <h2><%= card.name %></h2>
         <p><%= card.description %></p>
-      </div>
-      <div>
-        <p class="m-0"><%= card.state %></p>
-        <p><%= card.price %></p>
-      </div>
-
-      <%= link_to "See details", card_path(card.id) %>
+        <div>
+          <p class="m-0"><%= card.state %></p>
+          <p><%= card.price %></p>
+        </div>
+        <%= link_to "See details", card_path(card.id), :class=>"btn btn-warning" %>
+        <%# <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" /> %>
+      <%# </div> %>
     </div>
-
   <% end %>
-  <div class="card-trip">
-    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-    <div class="card-trip-infos">
-      <div>
-        <h2>Title here</h2>
-        <p>Short description here!</p>
-      </div>
-      <h2 class="card-trip-pricing">£99.99</h2>
-      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
-    </div>
-  </div>
-  <div class="card-trip">
-    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-    <div class="card-trip-infos">
-      <div>
-        <h2>Title here</h2>
-        <p>Short description here!</p>
-      </div>
-      <h2 class="card-trip-pricing">£99.99</h2>
-      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
-    </div>
-  </div>
-    <div class="card-trip">
-    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-    <div class="card-trip-infos">
-      <div>
-        <h2>Title here</h2>
-        <p>Short description here!</p>
-      </div>
-      <h2 class="card-trip-pricing">£99.99</h2>
-      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
-    </div>
-  </div>
-    <div class="card-trip">
-    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-    <div class="card-trip-infos">
-      <div>
-        <h2>Title here</h2>
-        <p>Short description here!</p>
-      </div>
-      <h2 class="card-trip-pricing">£99.99</h2>
-      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
-    </div>
-  </div>
-</div>
