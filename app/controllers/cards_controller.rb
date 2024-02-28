@@ -1,5 +1,4 @@
 class CardsController < ApplicationController
-  before_action :user_signed_in?
   skip_before_action :authenticate_user!, only: :index # Saute l'étape d'auth sur l'action index (puisque c'est notre root)
 
   def index
@@ -34,7 +33,9 @@ class CardsController < ApplicationController
   end
 
   def destroy
-    @card = Card.destroy
+    @card = Card.find(params[:id])
+    @card.destroy
+    redirect_to cards_path, notice: "Card sucessfully deleted"
   end
 
   private
