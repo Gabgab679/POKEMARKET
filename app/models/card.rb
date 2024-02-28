@@ -2,7 +2,7 @@ class Card < ApplicationRecord
   STATES = ["Mint", "Near Mint", "Good condition", "Acceptable", "Damaged"]
 
   belongs_to :user #Seller
-  has_one :sale
+  has_one :sale, dependent: :destroy
 
   validates :name, presence: true
   validates :description, presence: true

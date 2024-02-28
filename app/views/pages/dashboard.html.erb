@@ -36,7 +36,7 @@
               <p> <%= card.name  %> </p>
               <p> <%= card.price  %> </p>
               <%#  if in line %>
-              <div class="badge text-bg-primary"><%= card.sale.status.nil? ? "pending" : "sold" %></div>
+              <div class="badge text-bg-primary"><%= card.sale ? "pending" : "sold" %></div>
             </div>
           <% end %>
         </div>
