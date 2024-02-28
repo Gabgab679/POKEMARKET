@@ -10,6 +10,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root to: "cards#index" # = localhost 3000
-
-  get 'dashboard', to: 'pages#dashboard'
+   get 'dashboard', to: 'pages#dashboard'
 end
