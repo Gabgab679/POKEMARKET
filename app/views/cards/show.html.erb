@@ -1,10 +1,13 @@
  <h1><%= @card.name %></h1>
   <div class="container d-flex">
+    <div style="width: 300px">
    <% if @card.photos.attached? %>
-      <%= cl_image_tag @card.photos.first.key, height: 300, width: 400, crop: :fill %>
+      <%= cl_image_tag @card.photos.first.key, width: "100%"%>
     <% else %>
-      Inserer image par défaut
+      <%= image_tag "https://www.emob-meubles.fr/media/catalog/product/cache/47315658861446b438ceea760f29ab26/R/M/RMK2536GM_Pokemon_Pikachu_Giant_Wall_Decals_Assembled_Product_0b96.jpg", :style => "width: 100%" %>
     <% end %>
+    </div>
+
     <div class="ms-3">
       <h3>Description</h3>
       <p><%= @card.description %></p>
