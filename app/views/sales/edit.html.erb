@@ -1,0 +1,5 @@
+ <%= simple_form_for @sale do |f| %>
+  <%= f.label :nego_price, "Your price:" %>
+  <%= f.number_field :nego_price, in: @sale.nego_price..20.0, step: 0.01 %>
+  <%= f.submit "Make an offer" %>
+<% end %>

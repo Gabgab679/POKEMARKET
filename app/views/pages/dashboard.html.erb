@@ -16,7 +16,7 @@
       <% else %>
       <div class="row">
         <% current_user.cards.each do |card|%>
-          <div class="col-4 bg-secondary p-1 m-3 position-relative" style="background-image: url('<%= card.image %>'); background-size: contain; height: 350px;">
+            <div class="col-4 bg-secondary p-1 m-3 position-relative" style="background-image: url(''); background-size: contain; height: 350px;">
             <div class="card-strater position-absolute start-0 start-0 w-100 d-flex justify-content-between bg-secondary text-white p-2">
               <p class="m-0"><%= card.name %></p>
               <p class="m-0"><%= card.price %></p>
@@ -35,10 +35,15 @@
       <% else %>
         <div class="row">
           <% current_user.card_requests.each do |card|%>
-           <div class="cards_sales col-4 bg-secondary p-1 m-3 position-relative" style="background-image: url('<%= card.image %>'); background-size: cover; background-position: center; height: 350px;">
+           <div class="cards_sales col-4 bg-secondary p-1 m-3 position-relative">
               <!-- Bandeau en bas avec le nom et le prix -->
+              <% if card.photos.attached? %>
+                  <%= cl_image_tag(card.photos.first.key) %>
+                <% else %>
+                  <%= image_tag("https://www.emob-meubles.fr/media/catalog/product/cache/47315658861446b438ceea760f29ab26/R/M/RMK2536GM_Pokemon_Pikachu_Giant_Wall_Decals_Assembled_Product_0b96.jpg") %>
+                <% end %>
               <div class="card-footer position-absolute bottom-0 start-0 w-100 d-flex justify-content-between bg-secondary text-light p-2">
-                <p class="m-0"><%= card.name %></p>
+                 <p class="m-0"><%= card.name %></p>
                 <p class="m-0"><%= card.price %></p>
                </div>
               <div class="badge position-absolute top-5 end-0 bg-secondary p-2" style ="h-10 w-10"><%= card.sale ? "pending" : "sold" %></div>
