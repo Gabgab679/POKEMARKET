@@ -1,3 +1,10 @@
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<% message_type %> alert-primary alert-dismissible fade show" role="alert">
+  <%= message %>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+
  <h1><%= @card.name %></h1>
   <div class="container d-flex">
     <div style="width: 300px">
@@ -7,6 +14,7 @@
       <%= image_tag "https://www.emob-meubles.fr/media/catalog/product/cache/47315658861446b438ceea760f29ab26/R/M/RMK2536GM_Pokemon_Pikachu_Giant_Wall_Decals_Assembled_Product_0b96.jpg", :style => "width: 100%" %>
     <% end %>
     </div>
+
 
     <div class="ms-3">
       <h3>Description</h3>
@@ -24,9 +32,14 @@
       <%= button_to "Edit card", edit_card_path(@card), method: :get %>
       <%= button_to "Delete card", card_path(@card), method: :delete  %>
     </div>
-
   <% else %>
-    <%= button_to "Buy card", card_sales_path(@card) %>
+    <% if @card.sale %>
+      <%= button_to "Make a better offer", edit_sale_path(@card.sale), method: :get, data: {turbo_confirm: 'Are you sure?'} %>
+    <% else %>
+      <%= form_with url: card_sales_path(@card), method: :post do |form| %>
+        <%= form.label :nego_price, "Your price:" %>
+        <%= form.number_field :nego_price, step: 0.01 %>
+        <%= form.button "Make an offer", data: {turbo_confirm: "Are you sure?"} %>
+        <% end %>
+    <% end %>
   <% end %>
-</body>
-</html>
