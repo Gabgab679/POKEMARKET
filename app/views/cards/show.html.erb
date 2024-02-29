@@ -1,3 +1,51 @@
+  <div class="container">
+    <h1 class="pb-4 font-size-6"><%= @card.name %></h1>
+
+
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex">
+        <div class="position-relative">
+          <div class="card-trip-show">
+            <% if @card.photos.attached? %>
+              <%= cl_image_tag @card.photos.first.key%>
+            <% else %>
+              <%= image_tag "https://www.emob-meubles.fr/media/catalog/product/cache/47315658861446b438ceea760f29ab26/R/M/RMK2536GM_Pokemon_Pikachu_Giant_Wall_Decals_Assembled_Product_0b96.jpg" %>
+            <% end %>
+          </div>
+
+          <%  is_a_user_card = current_user.cards.include?(@card) %>
+          <% if is_a_user_card %>
+            <div class="d-flex justify-content-between">
+              <%= link_to "Edit card", edit_card_path(@card), class: "btn btn-primary w-100 btn-padding" %>
+              <%= link_to "Delete card", card_path(@card), data: { turbo_method: :delete }, class: "btn btn-danger lighter-red w-100 btn-padding" %>
+            </div>
+          <% else %>
+            <% if @card.sale %>
+          <%= button_to "Make a better offer", edit_sale_path(@card.sale), method: :get, data: {turbo_confirm: 'Are you sure?'} %>
+          <% else %>
+            <%= form_with url: card_sales_path(@card), method: :post do |form| %>
+              <div class="d-flex">
+                <%= form.number_field :nego_price, step: 0.01, class: "pe-2" %>
+                <%= form.button "Make an offer", class: "btn btn-primary", data: {turbo_confirm: "Are you sure?"} %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="ms-5">
+        <h2 class="pb-1">Description</h3>
+        <p class="ps-4 italic"><%= @card.description %></p>
+        <h2 class="pb-1">State</h3>
+        <p class="ps-4 italic"><%= @card.state %></p>
+        <h2 class="pb-1">Price</h3>
+        <p class="ps-4 italic"><%= @card.price %></p>
+      </div>
+    </div>
+    <div>
+      <%= image_tag "Graph.png", style:  "width: 90%"  %>
+    </div>
+  </div>
 <% flash.each do |message_type, message| %>
   <div class="alert alert-<% message_type %> alert-primary alert-dismissible fade show" role="alert">
   <%= message %>
@@ -5,41 +53,3 @@
   </div>
 <% end %>
 
- <h1><%= @card.name %></h1>
-  <div class="container d-flex">
-    <div style="width: 300px">
-   <% if @card.photos.attached? %>
-      <%= cl_image_tag @card.photos.first.key, width: "100%"%>
-    <% else %>
-      <%= image_tag "https://www.emob-meubles.fr/media/catalog/product/cache/47315658861446b438ceea760f29ab26/R/M/RMK2536GM_Pokemon_Pikachu_Giant_Wall_Decals_Assembled_Product_0b96.jpg", :style => "width: 100%" %>
-    <% end %>
-    </div>
-
-
-    <div class="ms-3">
-      <h3>Description</h3>
-      <p><%= @card.description %></p>
-      <h3>State</h3>
-      <p><%= @card.state %></p>
-      <h3>Price</h3>
-      <p><%= @card.price %></p>
-    </div>
-      <%= image_tag "Graph.png", :style => "width: 50%"  %>
-  </div>
-  <%  is_a_user_card = current_user.cards.include?(@card) %>
-  <% if is_a_user_card %>
-    <div>
-      <%= button_to "Edit card", edit_card_path(@card), method: :get %>
-      <%= button_to "Delete card", card_path(@card), method: :delete  %>
-    </div>
-  <% else %>
-    <% if @card.sale %>
-      <%= button_to "Make a better offer", edit_sale_path(@card.sale), method: :get, data: {turbo_confirm: 'Are you sure?'} %>
-    <% else %>
-      <%= form_with url: card_sales_path(@card), method: :post do |form| %>
-        <%= form.label :nego_price, "Your price:" %>
-        <%= form.number_field :nego_price, step: 0.01 %>
-        <%= form.button "Make an offer", data: {turbo_confirm: "Are you sure?"} %>
-        <% end %>
-    <% end %>
-  <% end %>
