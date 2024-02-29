@@ -69,13 +69,16 @@ User.create!(
 
 #   end
 STATE = ["Mint", "Near Mint", "Good condition", "Acceptable", "Damaged"]
+
+price = [2, 50, 100, 35]
+
 15.times do
   card = Card.create(
     name: Faker::Games::Pokemon.name,
     description: Faker::Games::Pokemon.move,
     image: File.open("app/assets/images/pika.jpeg"),
     state: STATE.sample,
-    price: Faker::Number.between(from: 1, to: 200),
+    price: price.sample,
     user: User.all.sample
   )
   card.save!

@@ -1,0 +1,32 @@
+.filters {
+  width: 250px;
+  box-shadow: 0 0 0.5em 0 rgba(0,0,0,0.3);
+  padding: 1.5em;
+  position: absolute;
+  top: 3.5rem;
+  background-color: white;
+}
+
+.filters_list li {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  padding-bottom: 1em;
+  line-height: 0;
+}
+
+.filters_price{
+  list-style-type: none;
+}
+
+.filters_list li:last-child {
+  padding-bottom: 0;
+}
+
+input[type="checkbox"] {
+  margin-right: 0.5em;
+}
+
+.filters:not(.filters--active) {
+  display: none;
+}
