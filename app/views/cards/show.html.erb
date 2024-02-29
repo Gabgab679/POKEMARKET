@@ -11,21 +11,22 @@
     <div class="ms-3">
       <h3>Description</h3>
       <p><%= @card.description %></p>
-      <h3>Etat</h3>
+      <h3>State</h3>
       <p><%= @card.state %></p>
       <h3>Price</h3>
       <p><%= @card.price %></p>
     </div>
+      <%= image_tag "Graph.png", :style => "width: 50%"  %>
   </div>
   <%  is_a_user_card = current_user.cards.include?(@card) %>
   <% if is_a_user_card %>
     <div>
-      <%= button_to "edit card", edit_card_path(@card), method: :get %>
-      <%= button_to "delete card", card_path(@card), method: :delete  %>
+      <%= button_to "Edit card", edit_card_path(@card), method: :get %>
+      <%= button_to "Delete card", card_path(@card), method: :delete  %>
     </div>
 
   <% else %>
-    <%= button_to "buy card", card_sales_path(@card) %>
+    <%= button_to "Buy card", card_sales_path(@card) %>
   <% end %>
 </body>
 </html>
