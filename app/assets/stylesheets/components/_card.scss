@@ -5,8 +5,20 @@
 }
 
 .card-trip > img {
-  height: 200px;
+  height: 350px;
   width: 100%;
+  object-fit: cover;
+}
+
+.card-trip-show {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.card-trip-show > img {
+  height: 350px;
+  width: 300px;
   object-fit: cover;
 }
 

@@ -1,0 +1,25 @@
+//Servez vous si vous voyez des modifs spécifiques à tel ou tel endroit, Alex
+
+.lighter-red {
+  background-color: $light-red !important;
+  border-color: $light-red !important;
+   transition: 0.2s ease-out !important;
+}
+
+.lighter-red:hover {
+  background-color: $red !important;
+}
+
+
+.btn-padding {
+  padding: 12px 0px;
+}
+
+
+.font-size-6 {
+  font-size: 70px;
+}
+
+.italic {
+  font-style: italic;
+}
