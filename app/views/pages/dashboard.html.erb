@@ -1,0 +1,49 @@
+<div class="container mt-3">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">My sales</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">My purchase</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <%# MY Sales %>
+    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+      <% if current_user.cards.empty? %>
+        <p>No cards in your pokedex</p>
+      <% else %>
+      <div class="row">
+        <% current_user.cards.each do |card|%>
+          <div class="col-4 bg-secondary p-1 m-3 position-relative" style="background-image: url('<%= card.image %>'); background-size: contain; height: 350px;">
+            <div class="card-strater position-absolute start-0 start-0 w-100 d-flex justify-content-between bg-secondary text-white p-2">
+              <p class="m-0"><%= card.name %></p>
+              <p class="m-0"><%= card.price %></p>
+            </div>
+            <a href="<%= card_path(card) %>" class="btn btn-secondary position-absolute bottom-0 start-0 w-100">View Card</a>
+          </div>
+        <% end %>
+      </div>
+
+      <% end %>
+    </div>
+    <%# MY Purcahse  %>
+    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+     <% if current_user.card_requests.empty? %>
+        <p>No request yet</p>
+      <% else %>
+        <div class="row">
+          <% current_user.card_requests.each do |card|%>
+           <div class="cards_sales col-4 bg-secondary p-1 m-3 position-relative" style="background-image: url('<%= card.image %>'); background-size: cover; background-position: center; height: 350px;">
+              <!-- Bandeau en bas avec le nom et le prix -->
+              <div class="card-footer position-absolute bottom-0 start-0 w-100 d-flex justify-content-between bg-secondary text-light p-2">
+                <p class="m-0"><%= card.name %></p>
+                <p class="m-0"><%= card.price %></p>
+               </div>
+              <div class="badge position-absolute top-5 end-0 bg-secondary p-2" style ="h-10 w-10"><%= card.sale ? "pending" : "sold" %></div>
+            </div>
+          <% end %>
+        </div>
+      <% end %></div>
+  </div>
+</div>
