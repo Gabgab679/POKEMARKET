@@ -21,12 +21,13 @@
             </div>
           <% else %>
             <% if @card.sale %>
-          <%= button_to "Make a better offer", edit_sale_path(@card.sale), method: :get, data: {turbo_confirm: 'Are you sure?'} %>
+            <p>Actual offer <%= @card.sale.nego_price %>€ by <%= @card.sale.user %> </p>
+          <%= button_to "Make a better offer", edit_sale_path(@card), method: :get %>
           <% else %>
             <%= form_with url: card_sales_path(@card), method: :post do |form| %>
               <div class="d-flex">
                 <%= form.number_field :nego_price, step: 0.01, class: "pe-2" %>
-                <%= form.button "Make an offer", class: "btn btn-primary", data: {turbo_confirm: "Are you sure?"} %>
+                <%= form.button "Make an offer (€)", class: "btn btn-primary", data: {turbo_confirm: "Are you sure?"} %>
               </div>
             <% end %>
           <% end %>
@@ -39,17 +40,10 @@
         <h2 class="pb-1">State</h3>
         <p class="ps-4 italic"><%= @card.state %></p>
         <h2 class="pb-1">Price</h3>
-        <p class="ps-4 italic"><%= @card.price %></p>
+        <p class="ps-4 italic"><%= @card.price %>€</p>
       </div>
     </div>
     <div>
       <%= image_tag "Graph.png", style:  "width: 90%"  %>
     </div>
   </div>
-<% flash.each do |message_type, message| %>
-  <div class="alert alert-<% message_type %> alert-primary alert-dismissible fade show" role="alert">
-  <%= message %>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-<% end %>
-
