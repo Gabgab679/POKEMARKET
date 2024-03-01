@@ -1,13 +1,16 @@
 class PagesController < ApplicationController
   def home
-    # on veut renvoyer vers la page url/cards
-    # Commentaire d'Alex > Si on renvoie vers url/cards, on utilise redirect_to ?
   end
 
   def dashboard
-    # @user = current_user # Supposons que vous avez une méthode current_user pour récupérer l'utilisateur actuellement connecté
-    #@cards = @user.cards
-    #@sales = @user.sales.includes(:card) # Assurez-vous de charger également les cartes associées aux ventes
+    @cards = current_user.cards
+
+    @cards_without_offer = @cards.select { |card| card.sale.nil? }
+    @cards_with_offer_and_sold = @cards.reject { |card| card.sale.nil? }
+    @cards_with_offer = @cards_with_offer_and_sold.select { |card| card.sale.status == "pending" }
+    @cards_sold = @cards_with_offer_and_sold.select { |card| card.sale.status == "accepted" }
+
+    @offers = current_user.sales
+    @pending_offers = @offers.reject { |offer| offer.status != "pending" }
   end
 end
-

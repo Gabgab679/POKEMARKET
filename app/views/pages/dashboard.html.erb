@@ -13,18 +13,79 @@
       <% if current_user.cards.empty? %>
         <p>No cards in your pokedex</p>
       <% else %>
-      <div class="row">
-        <% current_user.cards.each do |card|%>
-          <div class="col-4 bg-secondary p-1 m-3 position-relative" style="background-image: url('<%= card.image %>'); background-size: contain; height: 350px;">
-            <div class="card-strater position-absolute start-0 start-0 w-100 d-flex justify-content-between bg-secondary text-white p-2">
-              <p class="m-0"><%= card.name %></p>
-              <p class="m-0"><%= card.price %></p>
+
+
+        <h3>Cards without offers</h3>
+        <div class="cards">
+          <% @cards_without_offer.each do |card|%>
+            <div class="card-trip position-relative" >
+              <div class="d-flex justify-content-between align-items-center px-4 pt-2 border-bottom">
+                <h1 class="fs-3"><%= card.name %></h1>
+                <p class="fs-5"><%= card.price %></p>
+              </div>
+              <% if card.photos.attached? %>
+                <%= cl_image_tag(card.photos.first.key) %>
+              <% else %>
+                <%= image_tag("https://www.emob-meubles.fr/media/catalog/product/cache/47315658861446b438ceea760f29ab26/R/M/RMK2536GM_Pokemon_Pikachu_Giant_Wall_Decals_Assembled_Product_0b96.jpg") %>
+              <% end %>
+              <%= link_to "View Card", card_path(card.id), class: "btn btn-primary bottom-0 w-100 btn-padding" %>
             </div>
-            <a href="<%= card_path(card) %>" class="btn btn-secondary position-absolute bottom-0 start-0 w-100">View Card</a>
+          <% end %>
+        </div>
+
+      <h3>Cards with offers</h3>
+      <div class="cards">
+        <%  @cards_with_offer.each do |card|%>
+
+
+          <div class="card-trip position-relative" >
+              <div class="d-flex justify-content-between align-items-center px-4 pt-2 border-bottom">
+                <h1 class="fs-3"><%= card.name %></h1>
+                <p class="fs-5"><%= card.price %></p>
+              </div>
+              <% if card.photos.attached? %>
+                <%= cl_image_tag(card.photos.first.key) %>
+              <% else %>
+                <%= image_tag("https://www.emob-meubles.fr/media/catalog/product/cache/47315658861446b438ceea760f29ab26/R/M/RMK2536GM_Pokemon_Pikachu_Giant_Wall_Decals_Assembled_Product_0b96.jpg") %>
+              <% end %>
+                <div class="d-flex justify-content-between">
+                  <%= link_to "Accept offer", dashboard_path, class: "btn btn-success w-100 btn-padding" %>
+                  <%= link_to "Delete offer", sale_path(card.sale),  data: { turbo_method: :delete }, class: "btn btn-danger lighter-red w-100 btn-padding" %>
+                </div>
+              <div>
+
+            </div>
+
+
+              <!--2 buttons -->
+              </div>
           </div>
+          </div>
+
+
+
+
         <% end %>
       </div>
 
+      <h3>Previous Sales</h3>
+      <div class="cards">
+        <% @cards_sold.each do |card|%>
+
+          <div class="card-trip position-relative" >
+              <div class="d-flex justify-content-between align-items-center px-4 pt-2 border-bottom">
+                <h1 class="fs-3"><%= card.name %></h1>
+                <p class="fs-5"><%= card.price %></p>
+              </div>
+              <% if card.photos.attached? %>
+                <%= cl_image_tag(card.photos.first.key) %>
+              <% else %>
+                <%= image_tag("https://www.emob-meubles.fr/media/catalog/product/cache/47315658861446b438ceea760f29ab26/R/M/RMK2536GM_Pokemon_Pikachu_Giant_Wall_Decals_Assembled_Product_0b96.jpg") %>
+              <% end %>
+              <%= link_to "View Card", card_path(card.id), class: "btn btn-primary bottom-0 w-100 btn-padding" %>
+          </div>
+        <% end %>
+      </div>
       <% end %>
     </div>
     <%# MY Purcahse  %>
