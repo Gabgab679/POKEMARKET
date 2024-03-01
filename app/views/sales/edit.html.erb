@@ -1,6 +1,7 @@
- <h2>Card's price: <%= @card.price %>€</h2>
+ <h2>Card's price: <%= @sale.card.price %>€</h2>
  <%= simple_form_for @sale do |f| %>
   <%= f.label "Your price:" %>
-  <%= f.number_field :nego_price, input_html: { min: '0', max: @card.sale }, step: 0.01 %>
+  <%= f.number_field :nego_price, input_html: { min: @sale.nego_price, max: @sale.card.sale }, step: 0.01 %>
   <%= f.submit "Make an offer" %>
 <% end %>
+<p style="font-size: 0.8em"><em>Your offer must be higher than <%= @sale.nego_price %></em></p>
