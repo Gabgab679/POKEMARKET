@@ -47,7 +47,7 @@ class SalesController < ApplicationController
   def destroy
     @sale = Sale.find(params[:id])
     @sale.destroy
-    redirect_to cards_path(@cards), status: :see_other
+    redirect_to dashboard_path, status: :see_other
   end
 
   private
