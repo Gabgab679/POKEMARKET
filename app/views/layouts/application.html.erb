@@ -37,34 +37,35 @@
             <ul class="filters_price">
 
               <li>
-                <input id="f1" type="checkbox" name="price[0 5]" <%= "checked=\"true\"" if params[:price] && params[:price]["0 5"] == "on" %>/>
+                <input id="f1" type="checkbox" name="price[low]" <%= "checked=\"true\"" if params[:price] && params[:price]["low"] == "on" %>/>
                 <label for="f1">Moins de 5€</label>
               </li>
               <li>
-                <input id="f2" type="checkbox" name="price[5 20]" <%= "checked=\"true\"" if params[:price] && params[:price]["5 20"] == "on" %>/>
+                <input id="f2" type="checkbox" name="price[mid]" <%= "checked=\"true\"" if params[:price] && params[:price]["mid"] == "on" %>/>
                 <label for="f2">Entre 5 et 20€</label>
               </li>
               <li>
-                <input id="f3" type="checkbox" name="price[20+]" <%= "checked=\"true\"" if params[:price] && params[:price]["20+"] == "on" %>/>
+                <input id="f3" type="checkbox" name="price[high]" <%= "checked=\"true\"" if params[:price] && params[:price]["high"] == "on" %>/>
                 <label for="f3">Plus de 20€</label>
               </li>
             </ul>
            </div>
+           
+
 
           <button id="filter-button" class="button" type="button">State</button>
           <div id="filter-container" class="filters">
             <ul class="filters_list">
-
               <li>
                 <input id="f1" type="checkbox" name="state[Mint]" <%= "checked=\"true\"" if params[:state] && params[:state][:Mint] == "on" %>/>
                 <label for="f1">Mint</label>
               </li>
               <li>
-                <input id="f2" type="checkbox" name="state[Near Mint]" <%= "checked=\"true\"" if params[:state] && params[:state][:Near_mint] == "on" %>/>
+                <input id="f2" type="checkbox" name="state[Near Mint]" <%= "checked=\"true\"" if params[:state] && params[:state]["Near Mint"] == "on" %>/>
                 <label for="f2">Near mint</label>
               </li>
               <li>
-                <input id="f3" type="checkbox" name="state[Good condition]" <%= "checked=\"true\"" if params[:state] && params[:state][:Good_condition] == "on" %>/>
+                <input id="f3" type="checkbox" name="state[Good condition]" <%= "checked=\"true\"" if params[:state] && params[:state]["Good condition"] == "on" %>/>
                 <label for="f3">Good condition</label>
               </li>
               <li>

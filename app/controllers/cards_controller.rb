@@ -13,13 +13,11 @@ class CardsController < ApplicationController
       @cards = @cards.where(sql_subquery, query: "%#{params[:query]}%")
     end
     if params[:price].present?
-      if params[:price].keys.first == "0 5" || params[:price].keys.first == "5 20"
-        start_price = params[:price].keys.first.split.first
-        end_price = params[:price].keys.first.split.second
-        @cards = @cards.where("price BETWEEN :start_price AND :end_price", start_price: start_price.to_i, end_price: end_price.to_i )
-      else
-        @cards = @cards.where("price > 20")
-      end
+      min = params[:price].keys.include?("low") ? 0 : params[:price].keys.include?("mid") ? 5 : 20
+      max = params[:price].keys.include?("high") ? nil : params[:price].keys.include?("mid") ? 20 : 5
+
+      sql_query = "price > :min#{ " AND price <= :max" if max }"
+      @cards = @cards.where(sql_query, min:, max:)
     end
   end
 
