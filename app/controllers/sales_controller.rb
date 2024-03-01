@@ -44,7 +44,7 @@ class SalesController < ApplicationController
 
   def deal
     @sale = Sale.find(params[:id])
-    @sale.status = "Accepted"
+    @sale.update(status: "accepted")
     redirect_to dashboard_path, notice: 'Congrats! You just sold your card!'
   end
 
