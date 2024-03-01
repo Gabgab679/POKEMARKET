@@ -27,22 +27,26 @@ class SalesController < ApplicationController
 
   def update
     @sale = Sale.find(params[:id])
-    @sale.card.price <= params[:sale][:nego_price].to_f ? @sale.status = "accepted" : @sale.status = "pending"
-    @sale.user = current_user
-    if @sale.status == "accepted"
-      redirect_to dashboard_path, notice: 'You just bought a card!'
-    elsif @sale.update(sale_params) && @sale.status == "pending"
-      redirect_to card_path(@sale.card), notice: 'Your offer was sent!'
+    if @sale.nego_price > params[:sale][:nego_price].to_f
+      render :edit
     else
-      render :edit, status: :unprocessable_entity
+      @sale.card.price <= params[:sale][:nego_price].to_f ? @sale.status = "accepted" : @sale.status = "pending"
+      @sale.user = current_user
+      if @sale.status == "accepted"
+        redirect_to dashboard_path, notice: 'Congrats! You just bought a card!'
+      elsif @sale.update(sale_params) && @sale.status == "pending"
+        redirect_to card_path(@sale.card), notice: 'Your offer was sent!'
+      else
+        render :edit, status: :unprocessable_entity
+      end
     end
   end
 
-  # def deal
-  #   @sale = Sale.find(params[:id????????])
-  #   @sale.status = "Accepted"
-  #   @sale.save
-  # end
+  def deal
+    @sale = Sale.find(params[:id])
+    @sale.status = "Accepted"
+    redirect_to dashboard_path, notice: 'Congrats! You just sold your card!'
+  end
 
   def destroy
     @sale = Sale.find(params[:id])
