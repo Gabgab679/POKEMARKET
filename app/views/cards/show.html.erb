@@ -21,7 +21,7 @@
             </div>
           <% else %>
             <% if @card.sale %>
-            <p>Actual offer <%= @card.sale.nego_price %>€ by <%= @card.sale.user %> </p>
+            <p>Actual offer <%= @card.sale.nego_price %>€ by <%= @card.sale.user.username %> </p>
           <%= button_to "Make a better offer", edit_sale_path(@card), method: :get %>
           <% else %>
             <%= form_with url: card_sales_path(@card), method: :post do |form| %>
