@@ -15,6 +15,64 @@
       <div class="navbar navbar-expand-sm navbar-light navbar-lewagon p-4">
         <div class="container-fluid">
           <%= link_to image_tag("logo.png", :class => "w-25"), cards_path %> <%=%>
+                  <%= form_with url: cards_path, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
+                  params[:query],
+                  class: "form-control",
+                  placeholder: "Type a pokemon name"
+          %>
+
+          <button id="price" class="button" type="button">Price</button>
+          <div id="price-btn" class="filters">
+            <ul class="filters_price">
+
+              <li>
+                <input id="f1" type="checkbox" name="price[0 5]" <%= "checked=\"true\"" if params[:price] && params[:price]["0 5"] == "on" %>/>
+                <label for="f1">Moins de 5€</label>
+              </li>
+              <li>
+                <input id="f2" type="checkbox" name="price[5 20]" <%= "checked=\"true\"" if params[:price] && params[:price]["5 20"] == "on" %>/>
+                <label for="f2">Entre 5 et 20€</label>
+              </li>
+              <li>
+                <input id="f3" type="checkbox" name="price[20+]" <%= "checked=\"true\"" if params[:price] && params[:price]["20+"] == "on" %>/>
+                <label for="f3">Plus de 20€</label>
+              </li>
+            </ul>
+           </div>
+
+          <button id="filter-button" class="button" type="button">State</button>
+          <div id="filter-container" class="filters">
+            <ul class="filters_list">
+
+              <li>
+                <input id="f1" type="checkbox" name="state[Mint]" <%= "checked=\"true\"" if params[:state] && params[:state][:Mint] == "on" %>/>
+                <label for="f1">Mint</label>
+              </li>
+              <li>
+                <input id="f2" type="checkbox" name="state[Near Mint]" <%= "checked=\"true\"" if params[:state] && params[:state][:Near_mint] == "on" %>/>
+                <label for="f2">Near mint</label>
+              </li>
+              <li>
+                <input id="f3" type="checkbox" name="state[Good condition]" <%= "checked=\"true\"" if params[:state] && params[:state][:Good_condition] == "on" %>/>
+                <label for="f3">Good condition</label>
+              </li>
+              <li>
+                <input id="f4" type="checkbox" name="state[Acceptable]" <%= "checked=\"true\"" if params[:state] && params[:state][:Acceptable] == "on" %>/>
+                <label for="f4">Acceptable</label>
+              </li>
+              <li>
+                <input id="f5" type="checkbox" name="state[Damaged]" <%= "checked=\"true\"" if params[:state] && params[:state][:Damaged] == "on" %>/>
+                <label for="f5">Damaged</label>
+              </li>
+
+            </ul>
+          </div>
+          <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+        <% end %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

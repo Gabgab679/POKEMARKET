@@ -3,6 +3,24 @@ class CardsController < ApplicationController
 
   def index
     @cards = Card.all
+    if params[:query].present?
+      sql_subquery = "name ILIKE :query OR state ILIKE :query"
+      @cards = @cards.where(sql_subquery, query: "%#{params[:query]}%")
+    end
+    if params[:state].present?
+      substring_array = params[:state].keys.map { |e| "'#{e}'" }.join(', ')
+      sql_subquery = "state IN (#{substring_array})"
+      @cards = @cards.where(sql_subquery, query: "%#{params[:query]}%")
+    end
+    if params[:price].present?
+      if params[:price].keys.first == "0 5" || params[:price].keys.first == "5 20"
+        start_price = params[:price].keys.first.split.first
+        end_price = params[:price].keys.first.split.second
+        @cards = @cards.where("price BETWEEN :start_price AND :end_price", start_price: start_price.to_i, end_price: end_price.to_i )
+      else
+        @cards = @cards.where("price > 20")
+      end
+    end
   end
 
   def show
