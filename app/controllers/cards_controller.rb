@@ -40,7 +40,7 @@ class CardsController < ApplicationController
     @card.user = current_user
 
     if @card.save
-      redirect_to @card, notice: 'Card was successfully created.'
+      redirect_to @card, flash: { alert: 'Card was successfully created.' }
     else
       render :new, status: :unprocessable_entity
     end
@@ -48,9 +48,8 @@ class CardsController < ApplicationController
 
   def update
     @card = Card.find(params[:id])
-
     if @card.update(card_params)
-      redirect_to dashboard_path, notice: 'Card was successfully updated.'
+      redirect_to card_path(@card), success: 'Card was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end

@@ -5,6 +5,7 @@
 
 // External libraries
 @import "bootstrap";
+
 @import "font-awesome";
 
 // Your CSS partials
@@ -14,4 +15,5 @@
 @import "components/footer";
 @import "components/cards";
 @import "components/card";
-@import "components/dropdown_filter"
+@import "components/dropdown_filter";
+@import "config/modifiers";
