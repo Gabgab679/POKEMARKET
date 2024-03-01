@@ -8,7 +8,11 @@ Rails.application.routes.draw do
     resources :sales, only: %i[create] # edit et update a rajouter si negociation entre buyer et seller (prix)
   end
 
-  resources :sales, only: %i[edit update destroy]
+  resources :sales, only: %i[edit update destroy] do
+    member do
+      get :deal
+    end
+  end
 
   # Defines the root path route ("/")
   root to: "cards#index" # = localhost 3000
